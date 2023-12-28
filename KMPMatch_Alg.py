@@ -6,8 +6,15 @@ class KMPMatch():
     def setmatchstr(self,matchstr:str):
         self.matchstr = matchstr
 
+    
+    def get_public_prestufix(prefixset,stufixset):
+        pass
+
+
     def buildnextarray(self):
         for index in range(1,len(self.matchstr)):
+            if self.matchstr[index] == "?":
+                self.next.append(-1)
             temp_str = self.matchstr[:index]
             prefixsset = self.__getall_prefix_strs(temp_str)
             suffixsset = self.__getall_suffix_strs(temp_str)
@@ -31,6 +38,7 @@ class KMPMatch():
                     match_index = 0
                 if match_index == len(self.matchstr):
                     return True,index-match_index
+
                 if orgstr[index] == self.matchstr[match_index]:
                     match_index+=1
                     break
